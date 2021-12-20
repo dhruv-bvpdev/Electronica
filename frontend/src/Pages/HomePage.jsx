@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Row, Col, Container } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../actions/productActions";
 import ProductCard from "../components/ProductCard";
-import products from "../products";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products } = productList;
+
+  useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
   return (
     <React.Fragment>
       <h2 className="my-4">Latest Products</h2>

@@ -13,7 +13,7 @@ const products = [
   },
   {
     name: "OnePlus 9 512GB",
-    image: "/images/ON 9.png",
+    image: "/images/ON9.png",
     description:
       "Loaded with so many specifications, the OnePlus 9R features a brilliant camera combination of 48 MP (main camera), 16 MP (ultra-wide angle lens) 5 MP (macro lens), and 2 MP (monochrome lens). It takes awesome shots.",
     brand: "One Plus",

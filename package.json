@@ -2,8 +2,26 @@
   "name": "Electronica",
   "version": "1.0.0",
   "description": "MERN Stack E-Commerce Store built from scratch",
-  "main": "server",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "yarn --cwd frontend start ",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d"
+  },
   "author": "Dhruv Gursahani",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.2"
+  },
+  "devDependencies": {
+    "concurrently": "^6.5.1",
+    "nodemon": "^2.0.15"
+  }
 }

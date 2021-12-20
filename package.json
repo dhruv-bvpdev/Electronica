@@ -4,5 +4,6 @@
   "description": "MERN Stack E-Commerce Store built from scratch",
   "main": "server",
   "author": "Dhruv Gursahani",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {}
 }

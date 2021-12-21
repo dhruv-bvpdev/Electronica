@@ -8,10 +8,9 @@ const Footer = () => {
     <footer style={{ "background-color": "black", color: "#ffff" }}>
       <Container>
         <Row>
-          <Col className="text-center mt-3">Copyright &copy; {year}</Col>
-        </Row>
-        <Row>
-          <Col className="text-center my-3">Electronica</Col>
+          <Col className="text-center py-3">
+            Copyright &copy; {year} Electronica
+          </Col>
         </Row>
       </Container>
     </footer>

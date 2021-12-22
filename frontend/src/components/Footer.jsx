@@ -5,7 +5,12 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer style={{ "background-color": "black", color: "#ffff" }}>
+    <footer
+      style={{
+        "background-color": "black",
+        color: "#ffff",
+      }}
+    >
       <Container>
         <Row>
           <Col className="text-center py-3">

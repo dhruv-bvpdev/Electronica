@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Navbar,
   Nav,
@@ -8,8 +9,19 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { logout } from "../actions/userActions";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
       <Container>
@@ -19,10 +31,16 @@ const Header = () => {
           <Nav className="me-auto">
             <Nav.Link href="/about">About Us</Nav.Link>
             <Nav.Link href="/cart">Cart</Nav.Link>
-            <NavDropdown title="User" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Orders</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Logout</NavDropdown.Item>
-            </NavDropdown>
+            {userInfo ? (
+              <NavDropdown title={userInfo.name} id="collasible-nav-dropdown">
+                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                <NavDropdown.Item onClick={logoutHandler}>
+                  Logout
+                </NavDropdown.Item>
+              </NavDropdown>
+            ) : (
+              <Nav.Link href="/login">Sign In</Nav.Link>
+            )}
           </Nav>
           <Form className="d-flex">
             <FormControl

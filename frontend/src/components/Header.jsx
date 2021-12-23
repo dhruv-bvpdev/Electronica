@@ -9,7 +9,6 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 import { logout } from "../actions/userActions";
 
 const Header = () => {

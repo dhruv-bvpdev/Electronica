@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { getOrderDetails } from "../actions/orderActions";
+import { getOrderDetails, payOrder } from "../actions/orderActions";
+import { ORDER_PAY_RESET } from "../constants/orderConstants";
+import StripeContainer from "../components/StripeContainer";
 
 const OrderPage = ({ match }) => {
   const orderId = match.params.id;
@@ -14,6 +16,9 @@ const OrderPage = ({ match }) => {
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
 
+  const orderPay = useSelector((state) => state.orderPay);
+  const { loading: loadingPay, success: successPay } = orderPay;
+
   if (!loading) {
     order.itemsPrice = order.orderItems.reduce(
       (acc, item) => acc + item.price * item.qty,
@@ -22,8 +27,11 @@ const OrderPage = ({ match }) => {
   }
 
   useEffect(() => {
-    dispatch(getOrderDetails(orderId));
-  }, []);
+    if (!order || successPay) {
+      dispatch({ type: ORDER_PAY_RESET });
+      dispatch(getOrderDetails(orderId));
+    }
+  }, [dispatch, orderId, successPay, order]);
 
   return loading ? (
     <Loader />
@@ -31,7 +39,7 @@ const OrderPage = ({ match }) => {
     <Message variant="danger">{error}</Message>
   ) : (
     <React.Fragment>
-      <h1>ORDER {order._id}</h1>
+      <h1 style={{ textAlign: "center" }}>ORDER SUMMARY</h1>
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">
@@ -109,11 +117,8 @@ const OrderPage = ({ match }) => {
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <h2>ORDER SUMMARY</h2>
-              </ListGroup.Item>
-              <ListGroup.Item>
                 <Row>
-                  <Col>ITEMS</Col>
+                  <Col>SUB-TOTAL</Col>
                   <Col>₹{order.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
@@ -134,6 +139,13 @@ const OrderPage = ({ match }) => {
                   <Col>TOTAL</Col>
                   <Col>₹{order.totalPrice}</Col>
                 </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                {!order.isPaid && (
+                  <ListGroup.Item>
+                    {loadingPay ? <Loader /> : <StripeContainer />}
+                  </ListGroup.Item>
+                )}
               </ListGroup.Item>
             </ListGroup>
           </Card>

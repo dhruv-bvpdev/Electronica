@@ -1,5 +1,6 @@
 import Order from "../models/orderModel.js";
 import asyncHandler from "express-async-handler";
+import User from "../models/userModel.js";
 
 // @desc Create New Order
 // @route POST /api/orders
@@ -53,4 +54,31 @@ const getOrderById = asyncHandler(async (req, res) => {
   }
 });
 
-export { addOrderItems, getOrderById };
+// @desc Update order to paid
+// @route GET /api/orders/:id/pay
+// @access Private
+const updateOrderToPaid = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id);
+  const user = await User.findById(order.user);
+
+  if (order) {
+    order.isPaid = true;
+    order.paidAt = Date.now();
+    order.paymentResult = {
+      id: req.body.id,
+      status: req.body.status,
+      update_time: new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Kolkata",
+      }),
+      email_address: user.email,
+    };
+
+    const updatedOrder = await order.save();
+    res.json(updatedOrder);
+  } else {
+    res.status(404);
+    throw new Error("order not found");
+  }
+});
+
+export { addOrderItems, getOrderById, updateOrderToPaid };

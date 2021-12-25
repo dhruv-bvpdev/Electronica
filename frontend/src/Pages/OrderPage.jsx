@@ -5,7 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getOrderDetails, payOrder } from "../actions/orderActions";
-import { ORDER_PAY_RESET } from "../constants/orderConstants";
+import {
+  ORDER_DETAILS_RESET,
+  ORDER_PAY_RESET,
+} from "../constants/orderConstants";
 import StripeContainer from "../components/StripeContainer";
 
 const OrderPage = ({ match }) => {
@@ -30,6 +33,8 @@ const OrderPage = ({ match }) => {
     if (!order || successPay) {
       dispatch({ type: ORDER_PAY_RESET });
       dispatch(getOrderDetails(orderId));
+    } else if (orderId !== order._id) {
+      dispatch({ type: ORDER_DETAILS_RESET });
     }
   }, [dispatch, orderId, successPay, order]);
 

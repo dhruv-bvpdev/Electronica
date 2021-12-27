@@ -4,10 +4,11 @@ import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { getOrderDetails, payOrder } from "../actions/orderActions";
+import { getOrderDetails, deliverOrder } from "../actions/orderActions";
 import {
   ORDER_DETAILS_RESET,
   ORDER_PAY_RESET,
+  ORDER_DELIVER_RESET,
 } from "../constants/orderConstants";
 import StripeContainer from "../components/StripeContainer";
 
@@ -22,6 +23,12 @@ const OrderPage = ({ match }) => {
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
 
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   if (!loading) {
     order.itemsPrice = order.orderItems.reduce(
       (acc, item) => acc + item.price * item.qty,
@@ -30,13 +37,18 @@ const OrderPage = ({ match }) => {
   }
 
   useEffect(() => {
-    if (!order || successPay) {
+    if (!order || successPay || successDeliver) {
       dispatch({ type: ORDER_PAY_RESET });
+      dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(getOrderDetails(orderId));
     } else if (orderId !== order._id) {
       dispatch({ type: ORDER_DETAILS_RESET });
     }
-  }, [dispatch, orderId, successPay, order]);
+  }, [dispatch, orderId, successPay, successDeliver, order]);
+
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order));
+  };
 
   return loading ? (
     <Loader />
@@ -145,13 +157,23 @@ const OrderPage = ({ match }) => {
                   <Col>₹{order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
-                {!order.isPaid && (
-                  <ListGroup.Item>
-                    {loadingPay ? <Loader /> : <StripeContainer />}
-                  </ListGroup.Item>
-                )}
-              </ListGroup.Item>
+              {!order.isPaid && (
+                <ListGroup.Item>
+                  {loadingPay ? <Loader /> : <StripeContainer />}
+                </ListGroup.Item>
+              )}
+              {loadingDeliver && <Loader />}
+              {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                <ListGroup.Item>
+                  <Button
+                    type="button"
+                    className="btn col-12"
+                    onClick={deliverHandler}
+                  >
+                    MARK AS DELIVERED
+                  </Button>
+                </ListGroup.Item>
+              )}
             </ListGroup>
           </Card>
         </Col>

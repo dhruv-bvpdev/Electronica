@@ -33,6 +33,19 @@ const Header = () => {
             {userInfo ? (
               <NavDropdown title={userInfo.name} id="collasible-nav-dropdown">
                 <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                {userInfo.isAdmin && (
+                  <>
+                    <NavDropdown.Item href="/admin/userlist">
+                      Users
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/admin/products">
+                      Products
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/admin/orders">
+                      Orders
+                    </NavDropdown.Item>
+                  </>
+                )}
                 <NavDropdown.Item onClick={logoutHandler}>
                   Logout
                 </NavDropdown.Item>

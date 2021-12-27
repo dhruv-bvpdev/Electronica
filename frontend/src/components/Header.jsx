@@ -38,10 +38,10 @@ const Header = () => {
                     <NavDropdown.Item href="/admin/userlist">
                       Users
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="/admin/products">
+                    <NavDropdown.Item href="/admin/productlist">
                       Products
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="/admin/orders">
+                    <NavDropdown.Item href="/admin/orderlist">
                       Orders
                     </NavDropdown.Item>
                   </>

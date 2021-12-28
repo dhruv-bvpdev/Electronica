@@ -9,9 +9,8 @@ const Loader = () => {
       style={{
         width: "100px",
         height: "100px",
-        position: "fixed",
-        top: "50%",
-        left: "50%",
+        margin: "auto",
+        display: "auto",
       }}
     >
       <span className="visually-hidden">Loading...</span>

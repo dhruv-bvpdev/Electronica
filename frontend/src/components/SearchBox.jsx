@@ -23,7 +23,7 @@ const SearchBox = ({ history }) => {
         aria-label="Search"
       />
       <Button variant="dark" type="submit">
-        <i class="fas fa-search"></i>
+        <i className="fas fa-search"></i>
       </Button>
     </Form>
   );

@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer
       style={{
-        "background-color": "black",
+        backgroundColor: "black",
         color: "#ffff",
       }}
     >

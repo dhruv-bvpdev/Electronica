@@ -1,14 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Navbar,
-  Nav,
-  Container,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap";
+import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
+import { Route } from "react-router-dom";
+import SearchBox from "./SearchBox";
 import { logout } from "../actions/userActions";
 
 const Header = () => {
@@ -54,17 +48,7 @@ const Header = () => {
               <Nav.Link href="/login">Sign In</Nav.Link>
             )}
           </Nav>
-          <Form className="d-flex">
-            <FormControl
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="dark">
-              <i class="fas fa-search"></i>
-            </Button>
-          </Form>
+          <Route render={({ history }) => <SearchBox history={history} />} />
         </Navbar.Collapse>
       </Container>
     </Navbar>

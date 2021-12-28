@@ -5,15 +5,16 @@ import { listProducts } from "../actions/productActions";
 import ProductCard from "../components/ProductCard";
 import Loader from "../components/Loader";
 
-const HomePage = () => {
+const HomePage = ({ match }) => {
+  const keyword = match.params.keyword;
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+    dispatch(listProducts(keyword));
+  }, [dispatch, keyword]);
 
   return (
     <React.Fragment>

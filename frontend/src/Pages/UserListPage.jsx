@@ -48,6 +48,7 @@ const UserListPage = ({ history }) => {
               <th>EMAIL</th>
               <th>ADMIN</th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -71,6 +72,8 @@ const UserListPage = ({ history }) => {
                       <i className="fas fa-edit"></i>
                     </Button>
                   </Link>
+                </td>
+                <td>
                   <Button
                     variant="danger"
                     className="btn-sm"

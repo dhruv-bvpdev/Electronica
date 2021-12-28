@@ -100,6 +100,7 @@ const ProductListPage = ({ history, match }) => {
                 <th>CATEGORY</th>
                 <th>BRAND</th>
                 <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -116,6 +117,8 @@ const ProductListPage = ({ history, match }) => {
                         <i className="fas fa-edit"></i>
                       </Button>
                     </Link>
+                  </td>
+                  <td>
                     <Button
                       variant="danger"
                       className="btn-sm"

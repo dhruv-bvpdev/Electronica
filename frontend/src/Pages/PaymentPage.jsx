@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../components/FormContainer";
 import { savePaymentMethod } from "../actions/cartActions";
 import CheckoutSteps from "../components/CheckoutSteps";
+import Meta from "../components/Meta";
 
 const PaymentPage = ({ history }) => {
   const [paymentMethod, setPaymentMethod] = useState("Stripe");
@@ -25,6 +26,7 @@ const PaymentPage = ({ history }) => {
 
   return (
     <React.Fragment>
+      <Meta title="Payment Method" />
       <CheckoutSteps step1 step2 step3 />
       <FormContainer>
         <h1 style={{ textAlign: "center" }}>PAYMENT METHOD</h1>

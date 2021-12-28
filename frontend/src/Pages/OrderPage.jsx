@@ -11,6 +11,7 @@ import {
   ORDER_DELIVER_RESET,
 } from "../constants/orderConstants";
 import StripeContainer from "../components/StripeContainer";
+import Meta from "../components/Meta";
 
 const OrderPage = ({ match }) => {
   const orderId = match.params.id;
@@ -56,6 +57,7 @@ const OrderPage = ({ match }) => {
     <Message variant="danger">{error}</Message>
   ) : (
     <React.Fragment>
+      <Meta title="Order Summary" />
       <h1 style={{ textAlign: "center" }}>ORDER SUMMARY</h1>
       <Row>
         <Col md={8}>

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Message from "../components/Message";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { createOrder } from "../actions/orderActions";
+import Meta from "../components/Meta";
 
 const PlaceOrderPage = ({ history }) => {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ const PlaceOrderPage = ({ history }) => {
 
   return (
     <React.Fragment>
+      <Meta title="Place Order" />
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>

@@ -18,6 +18,7 @@ import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants";
 import Rating from "../components/Rating";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
+import Meta from "../components/Meta";
 
 const ProductPage = ({ history, match }) => {
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ const ProductPage = ({ history, match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
+          <Meta title={product.name} />
           <Row>
             <Col md={5}>
               <Image src={product.image} alt={product.name} fluid />

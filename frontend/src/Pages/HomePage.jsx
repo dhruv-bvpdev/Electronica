@@ -6,6 +6,7 @@ import ProductCard from "../components/ProductCard";
 import Loader from "../components/Loader";
 import Paginate from "../components/Paginate";
 import Message from "../components/Message";
+import Meta from "../components/Meta";
 
 const HomePage = ({ match }) => {
   const keyword = match.params.keyword;
@@ -23,6 +24,7 @@ const HomePage = ({ match }) => {
 
   return (
     <React.Fragment>
+      <Meta />
       <h2 className="my-4">Latest Products</h2>
       {loading ? (
         <Loader />

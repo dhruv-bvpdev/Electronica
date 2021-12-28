@@ -2,6 +2,7 @@ import path from "path";
 import express from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
+import enforce from "express-sslify";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import connectDB from "./config/connectDB.js";
 
@@ -15,6 +16,10 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+if (process.env.NODE_ENV === "production") {
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
+}
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));

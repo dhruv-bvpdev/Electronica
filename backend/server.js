@@ -47,9 +47,9 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.get("/service-worker.js", (req, res) => {
+app.get("/serviceWorkerRegistration.js", (req, res) => {
   res.sendFile(
-    path.resolve(__dirname, "frontend", "build", "service-worker.js")
+    path.resolve(__dirname, "frontend", "build", "serviceWorkerRegistration.js")
   );
 });
 

@@ -12,7 +12,6 @@ const Loader = () => {
         position: "fixed",
         top: "50%",
         left: "50%",
-        transform: "translate(-50%, -50%)",
       }}
     >
       <span className="visually-hidden">Loading...</span>

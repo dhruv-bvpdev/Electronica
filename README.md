@@ -1,9 +1,10 @@
 # Electrónica E-Commerce App
 
 ![Home Screen](/app_ss/home_page.png?raw=true)
-![Profile Screen](/app_ss/profile_page.png?raw=true)
+![Details Screen](/app_ss/details_page.png?raw=true)
 ![Cart](/app_ss/cart_page.png?raw=true)
 ![Order Summary Screen](/app_ss/order_summary.png?raw=true)
+![Profile Screen](/app_ss/profile_page.png?raw=true)
 
 ### Live Deployment
 
@@ -67,7 +68,7 @@ You can use the following commands to seed the database with some sample users a
 
 The MIT License
 
-Copyright (c) 2021 Dhruv Gursahani https://dhruv-gursahani.herokuapp.com
+Copyright (c) 2021 Dhruv Gursahani https://dhruvgursahani.netlify.app
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

@@ -8,7 +8,7 @@
 
 ### Live Deployment
 
-http://electronica-ecom.herokuapp.com/
+https://electronica.cyclic.app/
 
 ### Features
 
@@ -68,7 +68,7 @@ You can use the following commands to seed the database with some sample users a
 
 The MIT License
 
-Copyright (c) 2021 Dhruv Gursahani https://dhruvgursahani.netlify.app
+Copyright (c) 2022 Dhruv Gursahani https://dhruvgursahani.vercel.app
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

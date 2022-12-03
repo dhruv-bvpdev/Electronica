@@ -11,7 +11,7 @@
     "dev": "concurrently \"yarn run server\" \"yarn run client\"",
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d",
-    "heroku-postbuild": "YARN_PRODUCTION=false yarn --cwd frontend install && yarn --cwd frontend run build"
+    "postbuild": "YARN_PRODUCTION=false yarn --cwd frontend install && yarn --cwd frontend run build"
   },
   "author": "Dhruv Gursahani",
   "license": "MIT",
